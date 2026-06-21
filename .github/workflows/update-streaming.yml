@@ -1,0 +1,44 @@
+name: Update Streaming Top 10
+
+on:
+  schedule:
+    # FlixPatrol's data refreshes once a day, so checking once a day
+    # (mid-afternoon UTC, after their daily update typically lands) is
+    # plenty and keeps this a low-frequency, respectful scrape.
+    - cron: '15 14 * * *'
+  workflow_dispatch: {}   # lets you trigger it manually from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  update-streaming:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Fetch latest streaming Top 10
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: python scripts/fetch_streaming.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/streaming.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update streaming Top 10 [automated]"
+            git push
+          fi
