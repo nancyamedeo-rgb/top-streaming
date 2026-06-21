@@ -2,270 +2,258 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Top Streaming Now</title>
+<title>Streaming Top 10</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body, html { background: transparent; }
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --accent:#7C6CF0; --accent-dim:#564A9E;
+    --bg:transparent;
+    --ink:#F1EEFB; --ink-dim:#AFA8C9;
+    --dim:#766E92;
+    --rule:rgba(241,238,251,0.12);
 
-  #widget {
-    width: 100%;
-    background: transparent;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    overflow: hidden;
-    position: relative;
-    height: 520px;
-    color: white;
+    /* platform badge colors */
+    --netflix:#E50914; --hbomax:#9B5DE5; --disney:#1492FF;
+    --prime:#00A8E1; --appletv:#FFFFFF;
   }
-
-  .header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 0 0 12px 0;
-    border-bottom: 0.5px solid rgba(255,255,255,0.18);
-    margin-bottom: 6px;
-  }
-  .header-icon {
-    width: 28px; height: 28px;
-    background: linear-gradient(135deg, #e50914, #b81d24);
-    border-radius: 6px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px; flex-shrink: 0;
-  }
-  .header-title {
-    font-size: 13px; font-weight: 500;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    color: rgba(255,255,255,0.55);
-    flex: 1;
-  }
-  .header-date { font-size: 11px; color: rgba(255,255,255,0.35); }
-
-  .scroll-viewport { overflow: hidden; height: 466px; position: relative; }
-  .scroll-track { display: flex; flex-direction: column; }
-
-  .stream-row {
-    display: flex;
-    align-items: center;
-    padding: 9px 0;
-    border-bottom: 0.5px solid rgba(255,255,255,0.08);
-    gap: 11px;
-    flex-shrink: 0;
-    min-height: 60px;
+  html, body {
+    width:100%; height:100%; overflow:hidden;
+    background:transparent;
+    font-family:'Inter',sans-serif; color:var(--ink);
   }
 
-  .rank {
-    font-size: 11px; font-weight: 600;
-    color: rgba(255,255,255,0.28);
-    width: 22px; text-align: right; flex-shrink: 0;
-  }
-  .rank.top3 { color: #f5c518; }
-
-  .swatch {
-    width: 38px; height: 38px;
-    border-radius: 6px; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 11px; font-weight: 600;
-    color: rgba(255,255,255,0.85);
+  .stage {
+    width:100%; height:100%;
+    display:flex; flex-direction:column;
+    background:transparent;
   }
 
-  .info { flex: 1; min-width: 0; }
-  .title {
-    font-size: 13px; font-weight: 500;
-    color: rgba(255,255,255,0.92);
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    line-height: 1.3;
+  /* ── MASTHEAD ── */
+  .masthead {
+    display:flex; align-items:baseline; justify-content:space-between;
+    padding:3% 6% 2%;
+    flex-shrink:0;
   }
-  .meta {
-    font-size: 11px; color: rgba(255,255,255,0.38);
-    margin-top: 2px;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  .masthead-title {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(22px, 4.2vw, 40px);
+    letter-spacing:0.03em;
+    color:var(--accent);
+    line-height:1;
+  }
+  .masthead-sub {
+    font-size:clamp(11px, 1.5vw, 15px);
+    color:var(--dim);
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    margin-top:0.4em;
+  }
+  .masthead-date {
+    font-size:clamp(11px, 1.6vw, 16px);
+    color:var(--ink-dim);
+    text-align:right;
+    white-space:nowrap;
   }
 
-  .service-pill {
-    font-size: 9px; font-weight: 700;
-    padding: 2px 7px; border-radius: 3px;
-    letter-spacing: 0.04em; flex-shrink: 0;
-    text-transform: uppercase;
+  .status-line {
+    padding:0 6% 2%;
+    font-size:clamp(9px, 1.1vw, 12px);
+    color:var(--accent-dim);
+    letter-spacing:0.04em;
+    flex-shrink:0;
   }
-  .svc-netflix    { background: rgba(229,9,20,0.25);   color: #ff6b6b; border: 1px solid rgba(229,9,20,0.4); }
-  .svc-hbo        { background: rgba(122,80,205,0.25); color: #b09cf5; border: 1px solid rgba(122,80,205,0.4); }
-  .svc-disney     { background: rgba(17,60,219,0.25);  color: #6b9fff; border: 1px solid rgba(17,60,219,0.4); }
-  .svc-prime      { background: rgba(0,168,225,0.2);   color: #5dd3f5; border: 1px solid rgba(0,168,225,0.35); }
-  .svc-hulu       { background: rgba(28,231,131,0.18); color: #3df5a0; border: 1px solid rgba(28,231,131,0.3); }
-  .svc-apple      { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.2); }
-  .svc-paramount  { background: rgba(0,112,201,0.22);  color: #5ab4ff; border: 1px solid rgba(0,112,201,0.35); }
-  .svc-peacock    { background: rgba(255,130,0,0.2);   color: #ffaa55; border: 1px solid rgba(255,130,0,0.35); }
-  .svc-amc        { background: rgba(180,20,20,0.2);   color: #ff9090; border: 1px solid rgba(180,20,20,0.35); }
+  .status-line.error { color:var(--netflix); }
 
-  .type-badge {
-    font-size: 9px; font-weight: 600;
-    padding: 2px 5px; border-radius: 3px;
-    margin-left: 5px; vertical-align: middle;
-    background: rgba(255,255,255,0.08);
-    color: rgba(255,255,255,0.4);
-    text-transform: uppercase; letter-spacing: 0.04em;
+  /* ── SCROLL AREA ── */
+  .scroll-wrapper { flex:1; overflow:hidden; position:relative; }
+  .scroll-track { display:flex; flex-direction:column; }
+
+  /* ── ENTRY ROW ── */
+  .entry-row {
+    display:flex; align-items:center; gap:4%;
+    padding:3% 6%;
+    position:relative;
   }
-  .type-new { background: rgba(245,197,24,0.18); color: #f5c518; }
+  .entry-row::after {
+    content:"";
+    position:absolute; left:6%; right:6%; bottom:0;
+    height:1px;
+    background:var(--rule);
+  }
+
+  .rank-block {
+    flex-shrink:0;
+    width:10%;
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(24px, 5.6vw, 48px);
+    color:var(--accent);
+    line-height:0.9;
+    text-align:center;
+  }
+
+  .poster-block {
+    flex-shrink:0;
+    width:11%;
+    aspect-ratio:2/3;
+    border-radius:3px;
+    overflow:hidden;
+    background:rgba(124,108,240,0.10);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .poster-block img {
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .poster-fallback {
+    font-size:clamp(14px, 2.2vw, 20px);
+    color:var(--accent-dim);
+    line-height:1;
+  }
+
+  .entry-info {
+    flex:1; min-width:0;
+    display:flex; flex-direction:column; gap:0.35em;
+  }
+  .entry-title {
+    font-size:clamp(15px, 2.5vw, 24px);
+    font-weight:700;
+    color:var(--ink);
+    line-height:1.15;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .entry-meta {
+    display:flex; align-items:center; gap:0.5em;
+  }
+  .platform-badge {
+    flex-shrink:0;
+    font-size:clamp(9px, 1.2vw, 12px);
+    font-weight:700;
+    letter-spacing:0.03em;
+    padding:0.2em 0.65em;
+    border-radius:3px;
+    color:#0E0B1A;
+  }
+  .platform-badge.netflix { background:var(--netflix); color:#fff; }
+  .platform-badge.hbomax  { background:var(--hbomax); color:#fff; }
+  .platform-badge.disney  { background:var(--disney); color:#fff; }
+  .platform-badge.prime   { background:var(--prime); color:#0E0B1A; }
+  .platform-badge.appletv { background:var(--appletv); color:#0E0B1A; }
+  .category-tag {
+    font-size:clamp(9px, 1.2vw, 12px);
+    color:var(--dim);
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
 </style>
 </head>
 <body>
 
-<div id="widget">
-  <div class="header">
-    <div class="header-icon">▶</div>
-    <span class="header-title">Top 50 Streaming Now</span>
-    <span class="header-date" id="week-label"></span>
+<div class="stage">
+  <div class="masthead">
+    <div>
+      <div class="masthead-title">STREAMING</div>
+      <div class="masthead-sub">Top 10 Across Platforms</div>
+    </div>
+    <div class="masthead-date" id="chartDate">—</div>
   </div>
-  <div class="scroll-viewport">
-    <div class="scroll-track" id="scroll-track"></div>
+  <div class="status-line" id="statusLine">Loading…</div>
+
+  <div class="scroll-wrapper">
+    <div class="scroll-track" id="scrollTrack"></div>
   </div>
 </div>
 
 <script>
-// ── Top 50 Streaming — week of June 14, 2026 ──────────────────────────────
-// Sources: Netflix Tudum, Screen Rant, Rotten Tomatoes, TV Guide, Timeout
-// Update weekly. service options: netflix | hbo | disney | prime | hulu | apple | paramount | peacock | amc
-const STREAMING = [
-  // ── TOP TIER — highest viewership this week ──
-  { title: "Office Romance",                  service: "netflix",   type: "Movie",   genre: "Rom-Com",        isNew: true  },
-  { title: "House of the Dragon S3",          service: "hbo",       type: "Series",  genre: "Fantasy Drama",  isNew: true  },
-  { title: "The Witness",                     service: "netflix",   type: "Series",  genre: "Thriller",       isNew: true  },
-  { title: "The Bear S5",                     service: "hulu",      type: "Series",  genre: "Drama",          isNew: true  },
-  { title: "Avatar: The Last Airbender S2",   service: "netflix",   type: "Series",  genre: "Fantasy",        isNew: true  },
-  { title: "War Machine",                     service: "netflix",   type: "Movie",   genre: "Sci-Fi Action",  isNew: false },
-  { title: "Hoppers",                         service: "disney",    type: "Movie",   genre: "Family",         isNew: true  },
-  { title: "The Agency S2",                   service: "paramount", type: "Series",  genre: "Spy Thriller",   isNew: true  },
-  { title: "One Piece S2",                    service: "netflix",   type: "Series",  genre: "Action",         isNew: false },
-  { title: "The Vampire Lestat",              service: "amc",       type: "Series",  genre: "Horror Drama",   isNew: true  },
+/* ── CONFIG ──
+   Replace OWNER/REPO with your GitHub username and repo name, pointing at
+   the raw JSON file kept up to date by the GitHub Action
+   (see .github/workflows/update-streaming.yml + scripts/fetch_streaming.py). */
+const DATA_URL = "https://raw.githubusercontent.com/nancyamedeo-rgb/top-streaming/main/data/streaming.json";
 
-  // ── STRONG PERFORMERS ──
-  { title: "The Boroughs",                    service: "netflix",   type: "Series",  genre: "Mystery",        isNew: false },
-  { title: "Nemesis",                         service: "netflix",   type: "Series",  genre: "Crime",          isNew: false },
-  { title: "Cape Fear S1",                    service: "apple",     type: "Series",  genre: "Thriller",       isNew: true  },
-  { title: "Not Suitable for Work",           service: "hulu",      type: "Series",  genre: "Comedy",         isNew: true  },
-  { title: "The Four Seasons S2",             service: "netflix",   type: "Series",  genre: "Comedy-Drama",   isNew: false },
-  { title: "Man on Fire S1",                  service: "netflix",   type: "Series",  genre: "Action",         isNew: false },
-  { title: "How to Make a Killing",           service: "hbo",       type: "Movie",   genre: "Black Comedy",   isNew: true  },
-  { title: "Love Island USA S8",              service: "peacock",   type: "Series",  genre: "Reality",        isNew: true  },
-  { title: "Michael Jackson: The Verdict",    service: "netflix",   type: "Doc",     genre: "True Crime",     isNew: false },
-  { title: "Sweet Magnolias S5",              service: "netflix",   type: "Series",  genre: "Drama",          isNew: true  },
+const SCROLL_SPEED = 0.4; // px per frame, matches the other Dakboard widgets' pace
 
-  // ── MID-TIER TRENDING ──
-  { title: "Apex",                            service: "netflix",   type: "Movie",   genre: "Action",         isNew: false },
-  { title: "The Legend of Vox Machina S4",    service: "prime",     type: "Series",  genre: "Animated",       isNew: true  },
-  { title: "Spider-Noir",                     service: "prime",     type: "Series",  genre: "Superhero",      isNew: false },
-  { title: "Euphoria S3",                     service: "hbo",       type: "Series",  genre: "Drama",          isNew: false },
-  { title: "From S3",                         service: "prime",     type: "Series",  genre: "Sci-Fi Horror",  isNew: false },
-  { title: "A Good Girl's Guide to Murder",   service: "netflix",   type: "Series",  genre: "Mystery",        isNew: false },
-  { title: "The Pitt S2",                     service: "hbo",       type: "Series",  genre: "Medical Drama",  isNew: false },
-  { title: "Industry S4",                     service: "hbo",       type: "Series",  genre: "Drama",          isNew: false },
-  { title: "Sugar S2",                        service: "apple",     type: "Series",  genre: "Neo-Noir",       isNew: true  },
-  { title: "Pillion",                         service: "hbo",       type: "Movie",   genre: "Romance",        isNew: true  },
+const PLATFORM_CLASS = {
+  "Netflix": "netflix",
+  "HBO Max": "hbomax",
+  "Disney+": "disney",
+  "Amazon Prime": "prime",
+  "Apple TV": "appletv",
+};
 
-  // ── SOLID CATALOG & NEW DROPS ──
-  { title: "The Capture S3",                  service: "peacock",   type: "Series",  genre: "Conspiracy",     isNew: true  },
-  { title: "A Knight of Seven Kingdoms",      service: "hbo",       type: "Series",  genre: "Fantasy",        isNew: false },
-  { title: "Dead Man's Wire",                 service: "netflix",   type: "Movie",   genre: "Action",         isNew: false },
-  { title: "Remarkably Bright Creatures",     service: "netflix",   type: "Movie",   genre: "Drama",          isNew: false },
-  { title: "Off Campus",                      service: "hulu",      type: "Series",  genre: "Comedy",         isNew: false },
-  { title: "Ladies First",                    service: "netflix",   type: "Movie",   genre: "Drama",          isNew: false },
-  { title: "Voicemails for Isabelle",         service: "netflix",   type: "Movie",   genre: "Rom-Com",        isNew: true  },
-  { title: "Alice and Steve",                 service: "hulu",      type: "Series",  genre: "Comedy",         isNew: true  },
-  { title: "Dutton Ranch S1",                 service: "peacock",   type: "Series",  genre: "Western Drama",  isNew: true  },
-  { title: "The Boys S5",                     service: "prime",     type: "Series",  genre: "Superhero",      isNew: false },
+function buildEntryRow(entry) {
+  const badgeCls = PLATFORM_CLASS[entry.platform] || "";
+  const posterHtml = entry.poster
+    ? `<img src="${entry.poster}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',textContent:'▶'}))">`
+    : `<div class="poster-fallback">▶</div>`;
 
-  // ── ROUNDING OUT THE 50 ──
-  { title: "EPiC: Elvis Presley in Concert",  service: "paramount", type: "Doc",     genre: "Music",          isNew: true  },
-  { title: "Lorne",                           service: "peacock",   type: "Doc",     genre: "Biography",      isNew: true  },
-  { title: "Legends S1",                      service: "prime",     type: "Series",  genre: "Sports Drama",   isNew: false },
-  { title: "Merrily We Roll Along",           service: "netflix",   type: "Movie",   genre: "Musical",        isNew: false },
-  { title: "The Crash",                       service: "netflix",   type: "Movie",   genre: "Thriller",       isNew: false },
-  { title: "Clarkson's Farm S5",              service: "prime",     type: "Series",  genre: "Documentary",    isNew: true  },
-  { title: "Life, Larry & the Pursuit of…",   service: "hbo",       type: "Limited", genre: "Comedy",         isNew: true  },
-  { title: "USA 94: Brazil's Return",         service: "netflix",   type: "Doc",     genre: "Sports",         isNew: true  },
-  { title: "Heated Rivalry",                  service: "hbo",       type: "Series",  genre: "Sports Drama",   isNew: false },
-  { title: "Avatar: Fire and Ash",            service: "disney",    type: "Movie",   genre: "Sci-Fi",         isNew: true  },
-];
-
-const SWATCHES = [
-  '#8B1A1A','#1a3a6b','#1a4a2e','#4a1a6b','#6b3a1a',
-  '#1a4a4a','#4a3a1a','#2a1a4a','#1a2a4a','#4a1a3a',
-  '#2a4a1a','#6b1a4a','#1a6b4a','#4a2a1a','#1a1a6b',
-  '#6b4a1a','#1a4a6b','#4a6b1a','#6b1a1a','#1a6b1a',
-  '#3a1a6b','#6b6b1a','#1a3a3a','#6b1a6b','#3a6b1a',
-  '#1a6b6b','#6b3a3a','#3a3a6b','#6b6b3a','#3a6b6b',
-  '#8B3A1A','#1a5a2e','#5a1a6b','#1a5a5a','#5a3a1a',
-  '#2a5a1a','#5a1a3a','#1a2a5a','#5a2a4a','#2a4a5a',
-  '#7a1a2a','#1a7a3a','#3a1a7a','#7a4a1a','#1a4a7a',
-  '#4a7a1a','#7a1a5a','#1a5a7a','#7a5a1a','#1a7a5a',
-];
-
-function getInitials(title) {
-  return title.replace(/\s+S\d+.*$/,'').split(' ').slice(0,2).map(w => w[0] || '').join('').toUpperCase() || '▶';
-}
-
-function svcClass(s) { return 'svc-' + s; }
-
-function svcLabel(s) {
-  return { netflix:'Netflix', hbo:'Max', disney:'Disney+', prime:'Prime', hulu:'Hulu',
-           apple:'Apple TV+', paramount:'Paramount+', peacock:'Peacock', amc:'AMC+' }[s] || s;
-}
-
-function buildRows(items) {
-  return items.map((item, i) => {
-    const rank = i + 1;
-    const top3 = rank <= 3 ? ' top3' : '';
-    const swatch = SWATCHES[i % SWATCHES.length];
-    const initials = getInitials(item.title);
-    const newBadge = item.isNew ? '<span class="type-badge type-new">New</span>' : '';
-    return `<div class="stream-row">
-      <div class="rank${top3}">${rank}</div>
-      <div class="swatch" style="background:${swatch}">${initials}</div>
-      <div class="info">
-        <div class="title">${item.title}${newBadge}</div>
-        <div class="meta">${item.type} · ${item.genre}</div>
+  return `<div class="entry-row">
+    <div class="rank-block">${entry.rank}</div>
+    <div class="poster-block">${posterHtml}</div>
+    <div class="entry-info">
+      <div class="entry-title">${entry.title}</div>
+      <div class="entry-meta">
+        <span class="platform-badge ${badgeCls}">${entry.platform}</span>
+        <span class="category-tag">${entry.category === 'tv' ? 'Series' : 'Movie'}</span>
       </div>
-      <span class="service-pill ${svcClass(item.service)}">${svcLabel(item.service)}</span>
-    </div>`;
-  }).join('');
+    </div>
+  </div>`;
 }
 
-let animFrame;
-function startScroll(count) {
-  if (animFrame) cancelAnimationFrame(animFrame);
-  const track = document.getElementById('scroll-track');
-  const ROW_H = 60;
-  const totalH = ROW_H * count;
-  let pos = 0, last = null;
-  const SPEED = 0.38;
-  function step(ts) {
-    if (last !== null) pos += (ts - last) * SPEED / 1000 * 60;
-    last = ts;
-    if (pos >= totalH) pos -= totalH;
-    track.style.transform = `translateY(-${pos}px)`;
-    animFrame = requestAnimationFrame(step);
+let scrollPos = 0, scrollRAF = null;
+function startScroll() {
+  if (scrollRAF) cancelAnimationFrame(scrollRAF);
+  const track = document.getElementById("scrollTrack");
+  const half = track.scrollHeight / 2;
+  if (half <= 0) return;
+  function step() {
+    scrollPos += SCROLL_SPEED;
+    if (scrollPos >= half) scrollPos = 0;
+    track.style.transform = "translateY(-" + scrollPos + "px)";
+    scrollRAF = requestAnimationFrame(step);
   }
-  animFrame = requestAnimationFrame(step);
+  scrollRAF = requestAnimationFrame(step);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const vp = document.querySelector('.scroll-viewport');
-  vp.addEventListener('mouseenter', () => { if (animFrame) cancelAnimationFrame(animFrame); animFrame = null; });
-  vp.addEventListener('mouseleave', () => startScroll(STREAMING.length));
-});
-
-function init() {
-  const now = new Date();
-  document.getElementById('week-label').textContent =
-    'Week of ' + now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-  const track = document.getElementById('scroll-track');
-  const html = buildRows(STREAMING);
-  track.innerHTML = html + html;
-  startScroll(STREAMING.length);
+function setStatus(msg, isError) {
+  const el = document.getElementById("statusLine");
+  el.textContent = msg;
+  el.className = "status-line" + (isError ? " error" : "");
 }
 
-init();
+async function fetchStreaming() {
+  setStatus("Fetching latest chart…", false);
+  try {
+    const res = await fetch(DATA_URL + "?t=" + Date.now());
+    if (!res.ok) throw new Error("Fetch failed: HTTP " + res.status);
+    const data = await res.json();
+
+    if (data.status === "error" || !data.entries || data.entries.length === 0) {
+      throw new Error(data.lastError || "No streaming data available yet");
+    }
+
+    document.getElementById("chartDate").textContent = data.chartDate || "";
+
+    const track = document.getElementById("scrollTrack");
+    const rowsHtml = data.entries.map(buildEntryRow).join("");
+    track.innerHTML = rowsHtml + rowsHtml; // duplicate for seamless loop
+    startScroll();
+
+    const updated = data.updatedAt ? new Date(data.updatedAt) : new Date();
+    const label = data.status === "stale"
+      ? "Showing cached data from " + updated.toLocaleTimeString()
+      : "Updated " + updated.toLocaleTimeString();
+    setStatus(label, data.status === "stale");
+  } catch (e) {
+    console.error("Streaming fetch error:", e);
+    setStatus("Update failed — showing last data", true);
+  }
+}
+
+fetchStreaming();
+setInterval(fetchStreaming, 60 * 60 * 1000);   // poll hourly; data itself updates daily
+setTimeout(() => location.reload(), 12 * 60 * 60 * 1000); // safety-net reload twice a day
 </script>
 </body>
 </html>
