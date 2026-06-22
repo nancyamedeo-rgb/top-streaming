@@ -412,5 +412,7 @@
   "updatedAt": "2026-06-21T21:02:43.457633+00:00",
   "source": "flixpatrol.com",
   "posterSource": null,
-  "status": "ok"
+  "status": "stale",
+  "lastError": "Could not find a usable FlixPatrol chart page in the last 3 days.",
+  "lastErrorAt": "2026-06-22T21:53:45.265327+00:00"
 }
