@@ -1,12 +1,12 @@
 {
-  "chartDate": "2026-06-23",
+  "chartDate": "2026-06-24",
   "entries": [
     {
       "rank": 1,
       "title": "I Will Find You",
       "platform": "Netflix",
       "category": "tv",
-      "points": 910,
+      "points": 915,
       "poster": null
     },
     {
@@ -14,7 +14,7 @@
       "title": "Oasis",
       "platform": "Netflix",
       "category": "tv",
-      "points": 645,
+      "points": 659,
       "poster": null
     },
     {
@@ -22,7 +22,7 @@
       "title": "Teach You a Lesson",
       "platform": "Netflix",
       "category": "tv",
-      "points": 575,
+      "points": 574,
       "poster": null
     },
     {
@@ -30,15 +30,15 @@
       "title": "The Polygamist",
       "platform": "Netflix",
       "category": "tv",
-      "points": 360,
+      "points": 367,
       "poster": null
     },
     {
       "rank": 5,
-      "title": "My Royal Nemesis",
+      "title": "Raw",
       "platform": "Netflix",
       "category": "tv",
-      "points": 215,
+      "points": 234,
       "poster": null
     },
     {
@@ -46,7 +46,7 @@
       "title": "Voicemails for Isabelle",
       "platform": "Netflix",
       "category": "movie",
-      "points": 888,
+      "points": 895,
       "poster": null
     },
     {
@@ -54,7 +54,7 @@
       "title": "Husbands in Action",
       "platform": "Netflix",
       "category": "movie",
-      "points": 401,
+      "points": 385,
       "poster": null
     },
     {
@@ -62,23 +62,23 @@
       "title": "Maternal Instinct",
       "platform": "Netflix",
       "category": "movie",
-      "points": 395,
+      "points": 353,
       "poster": null
     },
     {
       "rank": 4,
-      "title": "Office Romance",
+      "title": "The Contractor",
       "platform": "Netflix",
       "category": "movie",
-      "points": 239,
+      "points": 270,
       "poster": null
     },
     {
       "rank": 5,
-      "title": "The Contractor",
+      "title": "Office Romance",
       "platform": "Netflix",
       "category": "movie",
-      "points": 224,
+      "points": 238,
       "poster": null
     },
     {
@@ -86,7 +86,7 @@
       "title": "House of the Dragon",
       "platform": "HBO Max",
       "category": "tv",
-      "points": 555,
+      "points": 559,
       "poster": null
     },
     {
@@ -94,31 +94,31 @@
       "title": "Rick and Morty",
       "platform": "HBO Max",
       "category": "tv",
-      "points": 480,
+      "points": 488,
       "poster": null
     },
     {
       "rank": 3,
-      "title": "Euphoria",
+      "title": "A Knight of the Seven Kingdoms",
       "platform": "HBO Max",
       "category": "tv",
-      "points": 352,
+      "points": 316,
       "poster": null
     },
     {
       "rank": 4,
-      "title": "A Knight of the Seven Kingdoms",
+      "title": "Dune: Prophecy",
       "platform": "HBO Max",
       "category": "tv",
-      "points": 241,
+      "points": 261,
       "poster": null
     },
     {
       "rank": 5,
-      "title": "Dune: Prophecy",
+      "title": "Euphoria",
       "platform": "HBO Max",
       "category": "tv",
-      "points": 179,
+      "points": 259,
       "poster": null
     },
     {
@@ -126,7 +126,7 @@
       "title": "They Will Kill You",
       "platform": "HBO Max",
       "category": "movie",
-      "points": 461,
+      "points": 453,
       "poster": null
     },
     {
@@ -142,23 +142,23 @@
       "title": "Terminator Salvation",
       "platform": "HBO Max",
       "category": "movie",
-      "points": 165,
+      "points": 162,
       "poster": null
     },
     {
       "rank": 4,
-      "title": "Birthrite",
+      "title": "Black Phone 2",
       "platform": "HBO Max",
       "category": "movie",
-      "points": 144,
+      "points": 136,
       "poster": null
     },
     {
       "rank": 5,
-      "title": "Sisu: Road to Revenge",
+      "title": "Birthrite",
       "platform": "HBO Max",
       "category": "movie",
-      "points": 130,
+      "points": 131,
       "poster": null
     },
     {
@@ -166,7 +166,7 @@
       "title": "Toy Story 5 | A Special Look",
       "platform": "Disney+",
       "category": "movie",
-      "points": 713,
+      "points": 707,
       "poster": null
     },
     {
@@ -174,7 +174,7 @@
       "title": "Hoppers",
       "platform": "Disney+",
       "category": "movie",
-      "points": 691,
+      "points": 653,
       "poster": null
     },
     {
@@ -182,7 +182,7 @@
       "title": "Toy Story",
       "platform": "Disney+",
       "category": "movie",
-      "points": 576,
+      "points": 604,
       "poster": null
     },
     {
@@ -190,7 +190,7 @@
       "title": "Toy Story 4",
       "platform": "Disney+",
       "category": "movie",
-      "points": 499,
+      "points": 468,
       "poster": null
     },
     {
@@ -198,7 +198,7 @@
       "title": "Toy Story 2",
       "platform": "Disney+",
       "category": "movie",
-      "points": 447,
+      "points": 464,
       "poster": null
     },
     {
@@ -206,23 +206,23 @@
       "title": "The Testaments",
       "platform": "Disney+",
       "category": "tv",
-      "points": 558,
+      "points": 518,
       "poster": null
     },
     {
       "rank": 2,
-      "title": "Not Suitable for Work",
+      "title": "High Potential",
       "platform": "Disney+",
       "category": "tv",
-      "points": 530,
+      "points": 511,
       "poster": null
     },
     {
       "rank": 3,
-      "title": "High Potential",
+      "title": "Not Suitable for Work",
       "platform": "Disney+",
       "category": "tv",
-      "points": 447,
+      "points": 481,
       "poster": null
     },
     {
@@ -230,7 +230,7 @@
       "title": "Perfect Crown",
       "platform": "Disney+",
       "category": "tv",
-      "points": 298,
+      "points": 303,
       "poster": null
     },
     {
@@ -238,7 +238,7 @@
       "title": "Malcolm in the Middle: Life's Still Unfair",
       "platform": "Disney+",
       "category": "tv",
-      "points": 288,
+      "points": 272,
       "poster": null
     },
     {
@@ -254,7 +254,7 @@
       "title": "Every Year After",
       "platform": "Amazon Prime",
       "category": "tv",
-      "points": 393,
+      "points": 389,
       "poster": null
     },
     {
@@ -262,7 +262,7 @@
       "title": "Spider-Noir",
       "platform": "Amazon Prime",
       "category": "tv",
-      "points": 349,
+      "points": 342,
       "poster": null
     },
     {
@@ -270,7 +270,7 @@
       "title": "Clarkson's Farm",
       "platform": "Amazon Prime",
       "category": "tv",
-      "points": 220,
+      "points": 209,
       "poster": null
     },
     {
@@ -278,7 +278,7 @@
       "title": "The Boys",
       "platform": "Amazon Prime",
       "category": "tv",
-      "points": 215,
+      "points": 205,
       "poster": null
     },
     {
@@ -286,7 +286,7 @@
       "title": "Your Fault: London",
       "platform": "Amazon Prime",
       "category": "movie",
-      "points": 430,
+      "points": 419,
       "poster": null
     },
     {
@@ -294,15 +294,15 @@
       "title": "My Fault: London",
       "platform": "Amazon Prime",
       "category": "movie",
-      "points": 214,
+      "points": 207,
       "poster": null
     },
     {
       "rank": 3,
-      "title": "Over Your Dead Body",
+      "title": "Now You See Me: Now You Don't",
       "platform": "Amazon Prime",
       "category": "movie",
-      "points": 204,
+      "points": 181,
       "poster": null
     },
     {
@@ -310,15 +310,55 @@
       "title": "Tom Clancy's Jack Ryan: Ghost War",
       "platform": "Amazon Prime",
       "category": "movie",
-      "points": 190,
+      "points": 176,
       "poster": null
     },
     {
       "rank": 5,
-      "title": "Now You See Me: Now You Don't",
+      "title": "Over Your Dead Body",
       "platform": "Amazon Prime",
       "category": "movie",
-      "points": 174,
+      "points": 167,
+      "poster": null
+    },
+    {
+      "rank": 1,
+      "title": "Sugar",
+      "platform": "Apple TV",
+      "category": "tv",
+      "points": 857,
+      "poster": null
+    },
+    {
+      "rank": 2,
+      "title": "Widow's Bay",
+      "platform": "Apple TV",
+      "category": "tv",
+      "points": 847,
+      "poster": null
+    },
+    {
+      "rank": 3,
+      "title": "Cape Fear",
+      "platform": "Apple TV",
+      "category": "tv",
+      "points": 775,
+      "poster": null
+    },
+    {
+      "rank": 4,
+      "title": "Your Friends & Neighbors",
+      "platform": "Apple TV",
+      "category": "tv",
+      "points": 773,
+      "poster": null
+    },
+    {
+      "rank": 5,
+      "title": "Ted Lasso",
+      "platform": "Apple TV",
+      "category": "tv",
+      "points": 435,
       "poster": null
     },
     {
@@ -326,7 +366,7 @@
       "title": "F1",
       "platform": "Apple TV",
       "category": "movie",
-      "points": 878,
+      "points": 848,
       "poster": null
     },
     {
@@ -342,7 +382,7 @@
       "title": "Outcome",
       "platform": "Apple TV",
       "category": "movie",
-      "points": 406,
+      "points": 463,
       "poster": null
     },
     {
@@ -350,7 +390,7 @@
       "title": "The Family Plan",
       "platform": "Apple TV",
       "category": "movie",
-      "points": 398,
+      "points": 429,
       "poster": null
     },
     {
@@ -358,47 +398,7 @@
       "title": "Greyhound",
       "platform": "Apple TV",
       "category": "movie",
-      "points": 332,
-      "poster": null
-    },
-    {
-      "rank": 1,
-      "title": "Widow's Bay",
-      "platform": "Apple TV",
-      "category": "tv",
-      "points": 856,
-      "poster": null
-    },
-    {
-      "rank": 2,
-      "title": "Sugar",
-      "platform": "Apple TV",
-      "category": "tv",
-      "points": 833,
-      "poster": null
-    },
-    {
-      "rank": 3,
-      "title": "Cape Fear",
-      "platform": "Apple TV",
-      "category": "tv",
-      "points": 814,
-      "poster": null
-    },
-    {
-      "rank": 4,
-      "title": "Your Friends & Neighbors",
-      "platform": "Apple TV",
-      "category": "tv",
-      "points": 758,
-      "poster": null
-    },
-    {
-      "rank": 5,
-      "title": "Ted Lasso",
-      "platform": "Apple TV",
-      "category": "tv",
-      "points": 411,
+      "points": 349,
       "poster": null
     }
   ],
@@ -409,7 +409,7 @@
     "Amazon Prime",
     "Apple TV"
   ],
-  "updatedAt": "2026-06-23T21:08:07.731386+00:00",
+  "updatedAt": "2026-06-24T20:23:23.037918+00:00",
   "source": "flixpatrol.com",
   "posterSource": null,
   "status": "ok"
