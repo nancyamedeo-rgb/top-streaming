@@ -72,7 +72,7 @@
   /* ── ENTRY ROW ── */
   .entry-row {
     display:flex; align-items:center; gap:4%;
-    padding:3% 6%;
+    padding:1.5% 6%;
     position:relative;
   }
   .entry-row::after {
@@ -92,25 +92,7 @@
     text-align:center;
   }
 
-  .poster-block {
-    flex-shrink:0;
-    width:11%;
-    aspect-ratio:2/3;
-    border-radius:3px;
-    overflow:hidden;
-    background:rgba(124,108,240,0.10);
-    display:flex; align-items:center; justify-content:center;
-  }
-  .poster-block img {
-    width:100%; height:100%;
-    object-fit:cover;
-    display:block;
-  }
-  .poster-fallback {
-    font-size:clamp(18px, 2.2vw, 20px);
-    color:var(--accent-dim);
-    line-height:1;
-  }
+  .poster-block { display:none; }
 
   .entry-info {
     flex:1; min-width:0;
@@ -184,13 +166,9 @@ const PLATFORM_CLASS = {
 
 function buildEntryRow(entry) {
   const badgeCls = PLATFORM_CLASS[entry.platform] || "";
-  const posterHtml = entry.poster
-    ? `<img src="${entry.poster}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'poster-fallback',textContent:'▶'}))">`
-    : `<div class="poster-fallback">▶</div>`;
 
   return `<div class="entry-row">
     <div class="rank-block">${entry.rank}</div>
-    <div class="poster-block">${posterHtml}</div>
     <div class="entry-info">
       <div class="entry-title">${entry.title}</div>
       <div class="entry-meta">
